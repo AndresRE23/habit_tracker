@@ -1,3 +1,4 @@
+import datetime
 import requests
 import os
 from dotenv import load_dotenv
@@ -32,5 +33,19 @@ headers = {
     "X-USER-TOKEN": api_token
 }
 
-response = requests.post(graph_endpoint, json=graph_config, headers=headers)
+# response = requests.post(graph_endpoint, json=graph_endpoint, headers=headers)
+# print(response.text)
+
+pixel_endpoint = f"{pixela_endpoint}/{username}/graphs/{graph_config["id"]}"
+date = datetime.date.today()
+formatted_date = date.strftime("%Y%m%d")
+
+pixel_config = {
+    "date": formatted_date,
+    "quantity": "1"
+}
+
+response = requests.post(pixel_endpoint, json=pixel_config, headers=headers)
 print(response.text)
+
+#https://pixe.la/v1/users/andresre/graphs/graph1.html
