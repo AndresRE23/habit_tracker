@@ -45,7 +45,11 @@ pixel_config = {
     "quantity": "1"
 }
 
-response = requests.post(pixel_endpoint, json=pixel_config, headers=headers)
+# response = requests.post(pixel_endpoint, json=pixel_config, headers=headers)
+# print(response.text)
+
+delete_endpoint = f"{pixela_endpoint}/{username}/graphs/{graph_config["id"]}/20250914"
+response = requests.delete(delete_endpoint, headers=headers)
 print(response.text)
 
 #https://pixe.la/v1/users/andresre/graphs/graph1.html
